@@ -22,6 +22,10 @@ enum Quizzler {
 		static let rectangleName = "Rectangle"
 	}
 
+	enum Label {
+		static let scoreText = "Score"
+	}
+
 	enum Sizes {
 		static let spacing: CGFloat = 10
 
@@ -36,6 +40,7 @@ enum Quizzler {
 
 		enum Button {
 			static let height: CGFloat = 80
+			static let font: CGFloat = 25
 		}
 
 		enum Bar {
@@ -46,11 +51,7 @@ enum Quizzler {
 }
 
 final class QuizzlerViewController: UIViewController {
-	
-	// MARK: - Outlets
-	
-	// MARK: - Public properties
-	
+
 	// MARK: - Dependencies
 
 	private var quizBrain: QuizBrain
@@ -62,8 +63,9 @@ final class QuizzlerViewController: UIViewController {
 
 	private lazy var scoreLabel: UILabel = makeLabel()
 	private lazy var questionLabel: UILabel = makeLabel()
-	private lazy var trueButton: UIButton = makeButton()
-	private lazy var falseButton: UIButton = makeButton()
+	private lazy var choiceOneButton: UIButton = makeButton()
+	private lazy var choiceTwoButton: UIButton = makeButton()
+	private lazy var choiceThreeButton: UIButton = makeButton()
 	private lazy var barProgressView: UIProgressView = makeProgressView()
 
 	// MARK: - Initialization
@@ -90,15 +92,24 @@ final class QuizzlerViewController: UIViewController {
 		layout()
 	}
 
-	// MARK: - Public methods
-	
 	// MARK: - Private methods
 
 	private func updateUI() {
-		scoreLabel.text = "Score: \(quizBrain.score)"
+		scoreLabel.text = "\(Quizzler.Label.scoreText): \(quizBrain.score)"
 		questionLabel.text = quizBrain.getQuestion()
+
+		let answers = quizBrain.getAnswers()
+		updateButtonTitle(answers[0], for: choiceOneButton)
+		updateButtonTitle(answers[1], for: choiceTwoButton)
+		updateButtonTitle(answers[2], for: choiceThreeButton)
+
 		let progress = quizBrain.getProgress()
 		barProgressView.setProgress(progress, animated: true)
+	}
+
+	private func updateButtonTitle(_ title: String, for button: UIButton) {
+		button.configuration?.attributedTitle = AttributedString(title)
+		button.configuration?.attributedTitle?.font = .systemFont(ofSize: Quizzler.Sizes.Button.font)
 	}
 }
 
@@ -131,8 +142,6 @@ private extension QuizzlerViewController {
 		addSubviews()
 
 		setupQuestionLabel()
-		setupTrueButton()
-		setupFalseButton()
 	}
 
 	func makeImageView() -> UIImageView {
@@ -201,19 +210,10 @@ private extension QuizzlerViewController {
 
 		mainStackView.addArrangedSubview(scoreLabel)
 		mainStackView.addArrangedSubview(questionLabel)
-		mainStackView.addArrangedSubview(trueButton)
-		mainStackView.addArrangedSubview(falseButton)
+		mainStackView.addArrangedSubview(choiceOneButton)
+		mainStackView.addArrangedSubview(choiceTwoButton)
+		mainStackView.addArrangedSubview(choiceThreeButton)
 		mainStackView.addArrangedSubview(barProgressView)
-	}
-
-	func setupTrueButton() {
-		trueButton.configuration?.attributedTitle = AttributedString(true.description.capitalized)
-		trueButton.configuration?.attributedTitle?.font = .systemFont(ofSize: 25)
-	}
-
-	func setupFalseButton() {
-		falseButton.configuration?.attributedTitle = AttributedString(false.description.capitalized)
-		falseButton.configuration?.attributedTitle?.font = .systemFont(ofSize: 25)
 	}
 
 	func setupQuestionLabel() {
@@ -240,8 +240,9 @@ private extension QuizzlerViewController {
 
 			scoreLabel.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Label.smallHeight),
 
-			trueButton.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Button.height),
-			falseButton.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Button.height),
+			choiceOneButton.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Button.height),
+			choiceTwoButton.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Button.height),
+			choiceThreeButton.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Button.height),
 
 			barProgressView.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Bar.height)
 		])

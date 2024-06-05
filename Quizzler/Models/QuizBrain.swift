@@ -19,8 +19,12 @@ struct QuizBrain {
 		questions[questionNumber - 1].content
 	}
 
+	func getAnswers() -> [String] {
+		questions[questionNumber - 1].answers.shuffled()
+	}
+
 	mutating func checkAnswer(_ userAnswer: String) -> Bool {
-		let result = userAnswer == questions[questionNumber - 1].answer
+		let result = userAnswer == questions[questionNumber - 1].correctAnswer
 		score += result ? 1 : 0
 
 		return result

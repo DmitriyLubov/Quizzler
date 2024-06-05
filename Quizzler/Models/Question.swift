@@ -8,5 +8,6 @@
 struct Question {
 
 	let content: String
-	let answer: String
+	let answers: [String]
+	let correctAnswer: String
 }
