@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		B68E12492C0F2C0A00EE754E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E12482C0F2C0A00EE754E /* AppDelegate.swift */; };
 		B68E124B2C0F2C0A00EE754E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E124A2C0F2C0A00EE754E /* SceneDelegate.swift */; };
-		B68E124D2C0F2C0A00EE754E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E124C2C0F2C0A00EE754E /* ViewController.swift */; };
-		B68E12502C0F2C0A00EE754E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B68E124F2C0F2C0A00EE754E /* Base */; };
+		B68E124D2C0F2C0A00EE754E /* QuizzlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68E124C2C0F2C0A00EE754E /* QuizzlerViewController.swift */; };
 		B68E12522C0F2C0C00EE754E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68E12512C0F2C0C00EE754E /* Assets.xcassets */; };
 		B68E12552C0F2C0C00EE754E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = B68E12542C0F2C0C00EE754E /* Base */; };
 /* End PBXBuildFile section */
@@ -19,8 +18,7 @@
 		B68E12452C0F2C0A00EE754E /* Quizzler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quizzler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B68E12482C0F2C0A00EE754E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B68E124A2C0F2C0A00EE754E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B68E124C2C0F2C0A00EE754E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B68E124F2C0F2C0A00EE754E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B68E124C2C0F2C0A00EE754E /* QuizzlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzlerViewController.swift; sourceTree = "<group>"; };
 		B68E12512C0F2C0C00EE754E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B68E12542C0F2C0C00EE754E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B68E12562C0F2C0C00EE754E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,8 +56,7 @@
 			children = (
 				B68E12482C0F2C0A00EE754E /* AppDelegate.swift */,
 				B68E124A2C0F2C0A00EE754E /* SceneDelegate.swift */,
-				B68E124C2C0F2C0A00EE754E /* ViewController.swift */,
-				B68E124E2C0F2C0A00EE754E /* Main.storyboard */,
+				B68E124C2C0F2C0A00EE754E /* QuizzlerViewController.swift */,
 				B68E12512C0F2C0C00EE754E /* Assets.xcassets */,
 				B68E12532C0F2C0C00EE754E /* LaunchScreen.storyboard */,
 				B68E12562C0F2C0C00EE754E /* Info.plist */,
@@ -127,7 +124,6 @@
 			files = (
 				B68E12522C0F2C0C00EE754E /* Assets.xcassets in Resources */,
 				B68E12552C0F2C0C00EE754E /* Base in Resources */,
-				B68E12502C0F2C0A00EE754E /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B68E124D2C0F2C0A00EE754E /* ViewController.swift in Sources */,
+				B68E124D2C0F2C0A00EE754E /* QuizzlerViewController.swift in Sources */,
 				B68E12492C0F2C0A00EE754E /* AppDelegate.swift in Sources */,
 				B68E124B2C0F2C0A00EE754E /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +143,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B68E124E2C0F2C0A00EE754E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B68E124F2C0F2C0A00EE754E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B68E12532C0F2C0C00EE754E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,9 +284,8 @@
 				INFOPLIST_FILE = Quizzler/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +293,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = DmitriyLubov.Quizzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -323,9 +314,8 @@
 				INFOPLIST_FILE = Quizzler/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,9 +323,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = DmitriyLubov.Quizzler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
