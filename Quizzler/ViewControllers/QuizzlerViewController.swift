@@ -26,7 +26,8 @@ enum Quizzler {
 		static let spacing: CGFloat = 10
 
 		enum Label {
-			static let font: CGFloat = 30
+			static let LargeFont: CGFloat = 30
+			static let smallHeight: CGFloat = 40
 		}
 
 		enum Image {
@@ -59,6 +60,7 @@ final class QuizzlerViewController: UIViewController {
 	private lazy var bubblesImage: UIImageView = makeImageView()
 	private lazy var mainStackView: UIStackView = makeStackView()
 
+	private lazy var scoreLabel: UILabel = makeLabel()
 	private lazy var questionLabel: UILabel = makeLabel()
 	private lazy var trueButton: UIButton = makeButton()
 	private lazy var falseButton: UIButton = makeButton()
@@ -93,6 +95,7 @@ final class QuizzlerViewController: UIViewController {
 	// MARK: - Private methods
 
 	private func updateUI() {
+		scoreLabel.text = "Score: \(quizBrain.score)"
 		questionLabel.text = quizBrain.getQuestion()
 		let progress = quizBrain.getProgress()
 		barProgressView.setProgress(progress, animated: true)
@@ -127,6 +130,7 @@ private extension QuizzlerViewController {
 
 		addSubviews()
 
+		setupQuestionLabel()
 		setupTrueButton()
 		setupFalseButton()
 	}
@@ -144,6 +148,7 @@ private extension QuizzlerViewController {
 		let element = UIStackView()
 
 		element.axis = .vertical
+		element.distribution = .fillProportionally
 		element.spacing = Quizzler.Sizes.spacing
 		element.translatesAutoresizingMaskIntoConstraints = false
 
@@ -154,8 +159,6 @@ private extension QuizzlerViewController {
 		let element = UILabel()
 
 		element.textColor = .white
-		element.font = .systemFont(ofSize: Quizzler.Sizes.Label.font, weight: .bold)
-		element.numberOfLines = 0
 		element.translatesAutoresizingMaskIntoConstraints = false
 
 		return element
@@ -196,6 +199,7 @@ private extension QuizzlerViewController {
 		view.addSubview(bubblesImage)
 		view.addSubview(mainStackView)
 
+		mainStackView.addArrangedSubview(scoreLabel)
 		mainStackView.addArrangedSubview(questionLabel)
 		mainStackView.addArrangedSubview(trueButton)
 		mainStackView.addArrangedSubview(falseButton)
@@ -210,6 +214,11 @@ private extension QuizzlerViewController {
 	func setupFalseButton() {
 		falseButton.configuration?.attributedTitle = AttributedString(false.description.capitalized)
 		falseButton.configuration?.attributedTitle?.font = .systemFont(ofSize: 25)
+	}
+
+	func setupQuestionLabel() {
+		questionLabel.font = .systemFont(ofSize: Quizzler.Sizes.Label.LargeFont, weight: .bold)
+		questionLabel.numberOfLines = 0
 	}
 }
 
@@ -228,6 +237,8 @@ private extension QuizzlerViewController {
 			mainStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
 			mainStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
 			mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+			scoreLabel.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Label.smallHeight),
 
 			trueButton.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Button.height),
 			falseButton.heightAnchor.constraint(equalToConstant: Quizzler.Sizes.Button.height),

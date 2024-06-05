@@ -9,6 +9,7 @@ struct QuizBrain {
 
 	private let questions: [Question]
 	private var questionNumber = 1
+	private(set) var score = 0
 
 	init(questions: [Question]) {
 		self.questions = questions
@@ -18,8 +19,11 @@ struct QuizBrain {
 		questions[questionNumber - 1].content
 	}
 
-	func checkAnswer(_ userAnswer: String) -> Bool {
-		userAnswer == questions[questionNumber - 1].answer
+	mutating func checkAnswer(_ userAnswer: String) -> Bool {
+		let result = userAnswer == questions[questionNumber - 1].answer
+		score += result ? 1 : 0
+
+		return result
 	}
 
 	func getProgress() -> Float {
@@ -31,6 +35,7 @@ struct QuizBrain {
 			questionNumber += 1
 		} else {
 			questionNumber = 1
+			score = 0
 		}
 	}
 }
