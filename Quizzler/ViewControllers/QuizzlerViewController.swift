@@ -51,7 +51,9 @@ final class QuizzlerViewController: UIViewController {
 	// MARK: - Public properties
 	
 	// MARK: - Dependencies
-	
+
+	private var quizBrain: QuizBrain
+
 	// MARK: - Private properties
 
 	private lazy var bubblesImage: UIImageView = makeImageView()
@@ -63,12 +65,22 @@ final class QuizzlerViewController: UIViewController {
 	private lazy var barProgressView: UIProgressView = makeProgressView()
 
 	// MARK: - Initialization
-	
+
+	init(quizBrain: QuizBrain) {
+		self.quizBrain = quizBrain
+		super.init(nibName: nil, bundle: nil)
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
 	// MARK: - Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
+		updateUI()
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -79,6 +91,12 @@ final class QuizzlerViewController: UIViewController {
 	// MARK: - Public methods
 	
 	// MARK: - Private methods
+
+	private func updateUI() {
+		questionLabel.text = quizBrain.getQuestion()
+		let progress = quizBrain.getProgress()
+		barProgressView.setProgress(progress, animated: true)
+	}
 }
 
 // MARK: - Actions
@@ -86,7 +104,17 @@ final class QuizzlerViewController: UIViewController {
 private extension QuizzlerViewController {
 
 	func answerButtonPressed(_ action: UIAction) {
-		
+		guard let sender = action.sender as? UIButton, let userAnswer = sender.configuration?.title else { return }
+
+		let result = quizBrain.checkAnswer(userAnswer)
+		quizBrain.nextQuestion()
+
+		sender.configuration?.background.backgroundColor = result ? .systemGreen : .systemRed
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+			sender.configuration?.background.backgroundColor = .clear
+			self?.updateUI()
+		}
 	}
 }
 
@@ -213,7 +241,7 @@ private extension QuizzlerViewController {
 struct ViewControllerProvider: PreviewProvider {
 	static var previews: some View {
 		Group {
-			QuizzlerViewController().previw()
+			QuizzlerViewController(quizBrain: QuizBrain(questions: QuestionRepository().getQuestions())).previw()
 		}
 	}
 }
