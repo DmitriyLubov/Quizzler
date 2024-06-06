@@ -1,4 +1,4 @@
-# Quiz
+# Quizzler
 
 ![Static Badge](https://img.shields.io/badge/UIKit-blue)
 ![Static Badge](https://img.shields.io/badge/MVC-green)
